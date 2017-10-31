@@ -1,0 +1,71 @@
+@startuml
+title Model de Domini
+
+object TotSeries
+
+object Usuari{
+    nom
+    contrasenya
+    e-mail
+}
+
+object Administrador{
+    vip
+}
+
+object Episodi{
+    nom
+    duracio
+    idiomaoriginal
+    descripcio
+    dataemisio
+    valoracio
+}
+
+object Cataleg
+
+object Serie{
+    titol
+    descripcio
+    ntemporades
+}
+
+object Temporada{
+    nepisodis
+}
+
+object Productora{
+    nom
+    identificacio
+    datacreacio
+}
+
+object Treballadors{
+    nom
+    nacionalitat
+}
+
+object Director
+object Actor
+
+TotSeries "1"--"1" Cataleg: conté
+TotSeries "1"--"*" Usuari: conté
+
+Serie "1"--"*" Treballadors: conté
+Serie "1"--"1" Productora: financiada per
+Serie "1"--"*" Temporada: conté
+
+Temporada "1"--"*" Episodi: conté
+
+Cataleg "1"--"*" Serie: conté
+Cataleg "1"--"*" Usuari: visualitza
+
+Administrador -|> Usuari
+Usuari "1"--"1" Episodi: veu
+
+
+Director-|>Treballadors
+Actor-|>Treballadors
+
+
+    
